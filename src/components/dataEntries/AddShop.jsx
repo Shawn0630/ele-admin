@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Switch, TimePicker, InputNumber, Upload, message} from 'antd';
+import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Switch, TimePicker, InputNumber, Upload, Table, message} from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
+import BasicTable from '../tables/BasicTable';
 const FormItem = Form.Item;
 const Option = Select.Option;
 
@@ -27,6 +28,35 @@ const residences = [{
             label: 'Zhong Hua Men',
         }],
     }],
+}];
+
+const columns = [{
+    title: 'TITLE',
+    dataIndex: 'title',
+    key: 'title',
+    render: text => <a>{text}</a>,
+}, {
+    title: 'NAME',
+    dataIndex: 'name',
+    key: 'name',
+}, {
+    title: 'DETAIL',
+    dataIndex: 'detial',
+    key: 'detial',
+}, {
+    title: 'ACTIONS',
+    key: 'action',
+    render: (text, record) => (
+        <span>
+            <a>Action 一 {record.name}</a>
+            <span className="ant-divider" />
+            <a>Delete</a>
+            <span className="ant-divider" />
+            <a className="ant-dropdown-link">
+                More actions <Icon type="down" />
+            </a>
+        </span>
+    ),
 }];
 
 class AddShopForm extends Component {
@@ -252,6 +282,7 @@ class AddShopForm extends Component {
                                 <Option value="DISCOUNT">DISCOUNT</Option>
                                 <Option value="SUBTRACTION">DEDUCT</Option>
                             </Select>
+                            <Table columns={columns} dataSource={data} />
                         </FormItem>
                         <FormItem {...tailFormItemLayout}>
                             <Button type="primary" htmlType="submit" size="large">CREATE SHOP</Button>

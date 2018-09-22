@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+package com.ele.model.dto.ele;
+
+option java_multiple_files = true;
+
+enum PromotionType {
+    NONE = 0;
+    NEW = 1;
+    SUBTRACTION = 2;
+    SPECIAL = 3;
+    DISCOUNT = 4;
+}
+
+message Promotion {
+    PromotionType variety = 1;
+    string slogan = 2;
+}
+
+message Good {
+    string imgUrl = 1;
+    string name = 2;
+    string desc = 3;
+    uint32 monthSale = 4;
+    double favorableRate = 5;
+    double oriPrice = 6;
+    double nowPrice = 7;
+    uint32 orderNum = 8;
+}
+
+message Variety {
+    string name = 1;
+    uint32 orderNum = 2;
+    string desc = 3;
+    repeated Good goodList = 4;
+}
+
+
+message ShopProfile {
+    string id = 1;
+    string imgUrl = 2;
+    bool isBrand = 3;
+    string shopName = 4;
+    double starNum = 5;
+    uint32 monthlySales = 6;
+    double initMoney = 7;
+    double deliveryFee = 8;
+    double distance = 9;
+    string needTime = 10;
+    bool isBird = 11;
+    bool isOntime = 12;
+    bool isInsurance = 13;
+    bool needtip = 14;
+    bool isNewShop = 15;
+    repeated Promotion shopActivity = 16;
+}
+
+message ShopDetail {
+    string shopImgUrl = 1;
+    string shopName = 2;
+    string shopAddress = 3;
+    string shopService = 4;
+    string announcement = 5;
+    string openTime = 6;
+    string slogan = 7;
+    double starNum = 8;
+    double deliveryFee = 9;
+    double sendThreshold = 10;
+    uint32 activityNum = 11;
+    repeated Promotion shopActivity = 12;
+    repeated Variety varietyList = 13;
+}
+
+message EvaluationStamp {
+    string name = 1;
+    uint32 num = 2;
+}
+
+message EvaluationComment {
+    string profileImg = 1;
+    string name = 2;
+    string time = 3;
+    repeated string foods = 4;
+    string content = 5;
+    string costTime = 6;
+    double star = 7;
+}
+
+
+message ShopEvaluation {
+    double score = 1;
+    double ratio = 2;
+    double service = 3;
+    double dish = 4;
+    double time = 5;
+    repeated EvaluationStamp stamps = 6;
+    repeated EvaluationComment comments = 7;
+
+}
