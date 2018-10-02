@@ -2,30 +2,38 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Switch, TimePicker, InputNumber, Upload, Table, message} from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import BasicTable from '../tables/BasicTable';
+import { com } from "../../models/ele";
+const ShopDetail = com.ele.model.dto.ele.ShopDetail;
+const Promotion = com.ele.model.dto.ele.Promotion;
 const FormItem = Form.Item;
 const Option = Select.Option;
 
 const residences = [{
-    value: 'zhejiang',
-    label: 'Zhejiang',
+    value: 'Canada',
+    label: 'Canada',
     children: [{
-        value: 'hangzhou',
-        label: 'Hangzhou',
+        value: 'Ontario',
+        label: 'Ontario',
         children: [{
-            value: 'xihu',
-            label: 'West Lake',
+            value: 'Waterloo',
+            label: 'Waterloo',
+        }, {
+            value: 'London',
+            label: 'London',
+        }, {
+            value: 'Toronto',
+            label: 'Toronto',
         }],
     }],
-}, {
-    value: 'jiangsu',
-    label: 'Jiangsu',
+    }, {
+    value: 'China',
+    label: 'China',
     children: [{
-        value: 'nanjing',
-        label: 'Nanjing',
+        value: 'Guangdong',
+        label: 'Guangdong',
         children: [{
-            value: 'zhonghuamen',
-            label: 'Zhong Hua Men',
+            value: 'Guangzhou',
+            label: 'Guangzhou',
         }],
     }],
 }];
@@ -128,6 +136,7 @@ class AddShopForm extends Component {
     }
     renderShopRegistrationForm() {
         const { getFieldDecorator } = this.props.form;
+        const data = [];
         const formItemLayout = {
             labelCol: {
                 xs: { span: 26 },
@@ -159,6 +168,11 @@ class AddShopForm extends Component {
         );
         const format = 'HH:mm';
         const imageUrl = this.state.imageUrl;
+        const shop = new ShopDetail.create();
+        shop.shopName = "test";
+        shop.starNum = 4;
+        console.log(shop);
+
         return <Row gutter={16}>
         <Col className="gutter-row" md={24}>
             <div className="gutter-box">
@@ -210,7 +224,7 @@ class AddShopForm extends Component {
                         <FormItem {...formItemLayout} label="Category">
                             {
                                 getFieldDecorator('residence', {
-                                    initialValue: ['zhejiang', 'hangzhou', 'xihu'],
+                                    initialValue: ['Canada', 'Ontario', 'Waterloo'],
                                     rules: [{ 
                                         type: 'array', required: true, 
                                         message: '请选择你的常住地址!' 
@@ -277,10 +291,10 @@ class AddShopForm extends Component {
                         </FormItem>
                         <FormItem {...formItemLayout} label="PROMOTION ">
                             <Select defaultValue="NEW" style={{ width: 150 }}>
-                                <Option value="NEW">NEW USER</Option>
-                                <Option value="SPCIAL">SPCIAL OFFER</Option>
-                                <Option value="DISCOUNT">DISCOUNT</Option>
-                                <Option value="SUBTRACTION">DEDUCT</Option>
+                                <Option value={Promotion.NEW}>NEW USER</Option>
+                                <Option value={Promotion.SPECIAL}>SPCIAL OFFER</Option>
+                                <Option value={Promotion.DISCOUNT}>DISCOUNT</Option>
+                                <Option value={Promotion.SUBTRACTION}>DEDUCT</Option>
                             </Select>
                             <Table columns={columns} dataSource={data} />
                         </FormItem>

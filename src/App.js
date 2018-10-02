@@ -1,23 +1,20 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Layout, notification, Icon } from 'antd';
 import './style/index.less';
 import SiderCustom from './components/SiderCustom';
 import HeaderCustom from './components/HeaderCustom';
-import { receiveData } from './action';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { connect } from 'dva';
 import Routes from './routes';
 const { Content, Footer } = Layout;
 
-class App extends Component {
+class App extends PureComponent {
     state = {
         collapsed: false,
     };
     componentWillMount() {
-        const { receiveData } = this.props;
         const user = JSON.parse(localStorage.getItem('user'));
-        user && receiveData(user, 'auth');
-        // receiveData({a: 213}, 'auth');
+        //user && this.receiveData(user, 'auth');
+        this.receiveData({a: 213}, 'auth');
         // fetchData({funcName: 'admin', stateName: 'auth'});
         this.getClientWidth();
         window.onresize = () => {
@@ -27,16 +24,18 @@ class App extends Component {
         }
     }
     componentDidMount() {
+        debugger;
+        console.log("componentDidMount");
         const openNotification = () => {
             notification.open({
-              message: '博主-yezihaohao',
+              message: '博主-Shawn',
               description: (
                   <div>
                       <p>
-                          GitHub地址： <a href="https://github.com/yezihaohao" target="_blank" rel="noopener noreferrer">https://github.com/yezihaohao</a>
+                          GitHub地址： <a href="https://github.com/Shawn0630" target="_blank" rel="noopener noreferrer">https://github.com/Shawn0630</a>
                       </p>
                       <p>
-                          博客地址： <a href="https://yezihaohao.github.io/" target="_blank" rel="noopener noreferrer">https://yezihaohao.github.io/</a>
+                          博客地址： <a href="https://Shawn0630.github.io/" target="_blank" rel="noopener noreferrer">https://Shawn0630.github.io/</a>
                       </p>
                   </div>
               ),
@@ -47,22 +46,38 @@ class App extends Component {
         };
         const isFirst = JSON.parse(localStorage.getItem('isFirst'));
         !isFirst && openNotification();
+        this.getClientWidth();
     }
     getClientWidth = () => {    // 获取当前浏览器宽度并设置responsive管理响应式
-        const { receiveData } = this.props;
         const clientWidth = document.body.clientWidth;
         console.log(clientWidth);
-        receiveData({isMobile: clientWidth <= 992}, 'responsive');
+        this.receiveData({isMobile: clientWidth <= 992}, 'responsive');
     };
     toggle = () => {
         this.setState({
             collapsed: !this.state.collapsed,
         });
     };
+    receiveData(data, category) {
+        const { dispatch } = this.props;
+        dispatch({
+            type: "global/receiveData",
+            payload: {
+                data: data,
+                category: category
+            }
+        })
+    };
     render() {
         // console.log(this.props.auth);
         // console.log(this.props.responsive);
+        debugger;
+        console.log("render");
         const { auth, responsive } = this.props;
+        console.log(responsive.data);
+
+        if (responsive.data == null) return <div />;
+
         return (
             <Layout>
                 {!responsive.data.isMobile && <SiderCustom collapsed={this.state.collapsed} />}
@@ -72,7 +87,7 @@ class App extends Component {
                         <Routes auth={auth} />
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>
-                    React-Admin ©{new Date().getFullYear()} Created by 865470087@qq.com
+                    Ele-Admin ©{new Date().getFullYear()} Created by shawn.jiang.ca@gmail.com
                     </Footer>
                 </Layout>
                 
@@ -92,12 +107,8 @@ class App extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    const { auth = {data: {}}, responsive = {data: {}} } = state.httpData;
-    return {auth, responsive};
-};
-const mapDispatchToProps = dispatch => ({
-    receiveData: bindActionCreators(receiveData, dispatch)
-});
+export default connect(({ global }) => ({
+    auth: global.auth,
+    responsive: global.responsive
+}))(App);
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);

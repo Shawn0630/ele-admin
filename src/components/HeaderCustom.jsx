@@ -77,6 +77,7 @@ class HeaderCustom extends Component {
     };
     render() {
         const { responsive, path } = this.props;
+        console.log("Header render");
         return (
             <Header style={{ background: '#fff', padding: 0, height: 65 }} className="custom-theme" >
                 {
@@ -128,9 +129,8 @@ class HeaderCustom extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    const { responsive = {data: {}} } = state.httpData;
-    return {responsive};
-};
+export default withRouter(connect(({ global }) => ({
+    auth: global.auth,
+    responsive: global.responsive
+}))(HeaderCustom));
 
-export default withRouter(connect(mapStateToProps)(HeaderCustom));
