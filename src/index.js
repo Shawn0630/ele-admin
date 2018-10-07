@@ -9,6 +9,7 @@ import reducer from './reducer';
 import { AppContainer } from 'react-hot-loader';
 import Page from './Page';
 import global from './dva/global';
+import result from './dva/result';
 
 import dva, { DvaInstance } from 'dva';
 import createBrowserHistory from 'history/createBrowserHistory';
@@ -22,6 +23,7 @@ const app = dva({
 });
 
 app.model(global);
+app.model(result);
 
 app.router(router);
 app.start("#root");
@@ -75,3 +77,5 @@ app.start("#root");
 //   document.getElementById('root')
 // );
 registerServiceWorker();
+
+export default app._store;

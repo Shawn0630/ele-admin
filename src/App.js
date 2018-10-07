@@ -24,8 +24,6 @@ class App extends PureComponent {
         }
     }
     componentDidMount() {
-        debugger;
-        console.log("componentDidMount");
         const openNotification = () => {
             notification.open({
               message: '博主-Shawn',
@@ -48,9 +46,8 @@ class App extends PureComponent {
         !isFirst && openNotification();
         this.getClientWidth();
     }
-    getClientWidth = () => {    // 获取当前浏览器宽度并设置responsive管理响应式
+    getClientWidth = () => { // 获取当前浏览器宽度并设置responsive管理响应式
         const clientWidth = document.body.clientWidth;
-        console.log(clientWidth);
         this.receiveData({isMobile: clientWidth <= 992}, 'responsive');
     };
     toggle = () => {
@@ -68,14 +65,16 @@ class App extends PureComponent {
             }
         })
     };
+    getShopList() {
+        const { dispatch } = this.props;
+        dispatch({
+            type: "result/getShopList"
+        })
+    }
     render() {
         // console.log(this.props.auth);
         // console.log(this.props.responsive);
-        debugger;
-        console.log("render");
         const { auth, responsive } = this.props;
-        console.log(responsive.data);
-
         if (responsive.data == null) return <div />;
 
         return (

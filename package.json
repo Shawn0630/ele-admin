@@ -21,7 +21,6 @@
     "draftjs-to-markdown": "^0.4.2",
     "dva": "^2.4.0",
     "echarts-for-react": "^1.4.4",
-    "eslint": "3.19.0",
     "eslint-config-react-app": "^1.0.5",
     "eslint-loader": "1.7.1",
     "eslint-plugin-flowtype": "2.34.0",
@@ -59,6 +58,7 @@
     "screenfull": "^3.3.1",
     "source-map-explorer": "^1.4.0",
     "style-loader": "0.18.2",
+    "superagent": "^4.0.0-beta.5",
     "sw-precache-webpack-plugin": "0.11.3",
     "url-loader": "0.5.9",
     "webpack": "2.6.1",
@@ -67,8 +67,13 @@
     "whatwg-fetch": "2.0.3"
   },
   "devDependencies": {
+    "@types/react": "^16.4.15",
+    "@types/react-redux": "^6.0.9",
+    "@types/redux": "^3.6.0",
+    "@types/superagent": "^3.8.4",
     "babel-plugin-import": "^1.2.1",
     "bundle-loader": "^0.5.5",
+    "eslint": "^5.6.1",
     "less": "^2.7.2",
     "less-loader": "^4.0.4",
     "react-hot-loader": "^4.3.3"
@@ -79,6 +84,7 @@
     "build": "node scripts/build.js",
     "proto-js": "pbjs -t static-module -w commonjs -o src/models/ele.js proto/**/*.proto",
     "proto": "npm run-script proto-js",
+    "lint": "eslint ./src",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {

@@ -1,5 +1,5 @@
 export default {
-    menus: [    // 菜单相关路由
+    menus: [ // 菜单相关路由
         { key: '/app/dashboard/index', title: '首页', icon: 'mobile', component: 'Dashboard' },
         {
             key: '/app/ui', title: 'UI', icon: 'scan',
@@ -66,5 +66,5 @@ export default {
             key: '/app/shop', title: "ADD DATA", icon: "star", component: "AddShop"
         }
     ],
-    others: []  // 非菜单相关路由
+    others: [] // 非菜单相关路由
 }

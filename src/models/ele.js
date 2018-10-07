@@ -1,13 +1,13 @@
 /*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
-"use strict";
 
-var $protobuf = require("protobufjs/minimal");
+
+var $protobuf = require('protobufjs/minimal');
 
 // Common aliases
 var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
 
 // Exported root namespace
-var $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
+var $root = $protobuf.roots['default'] || ($protobuf.roots['default'] = {});
 
 $root.com = (function() {
 
@@ -66,11 +66,11 @@ $root.com = (function() {
                      */
                     ele.PromotionType = (function() {
                         var valuesById = {}, values = Object.create(valuesById);
-                        values[valuesById[0] = "NONE"] = 0;
-                        values[valuesById[1] = "NEW"] = 1;
-                        values[valuesById[2] = "SUBTRACTION"] = 2;
-                        values[valuesById[3] = "SPECIAL"] = 3;
-                        values[valuesById[4] = "DISCOUNT"] = 4;
+                        values[valuesById[0] = 'NONE'] = 0;
+                        values[valuesById[1] = 'NEW'] = 1;
+                        values[valuesById[2] = 'SUBTRACTION'] = 2;
+                        values[valuesById[3] = 'SPECIAL'] = 3;
+                        values[valuesById[4] = 'DISCOUNT'] = 4;
                         return values;
                     })();
 
@@ -113,7 +113,7 @@ $root.com = (function() {
                          * @memberof com.ele.model.dto.ele.Promotion
                          * @instance
                          */
-                        Promotion.prototype.slogan = "";
+                        Promotion.prototype.slogan = '';
 
                         /**
                          * Creates a new Promotion instance using the specified properties.
@@ -139,9 +139,9 @@ $root.com = (function() {
                         Promotion.encode = function encode(message, writer) {
                             if (!writer)
                                 writer = $Writer.create();
-                            if (message.variety != null && message.hasOwnProperty("variety"))
+                            if (message.variety != null && message.hasOwnProperty('variety'))
                                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.variety);
-                            if (message.slogan != null && message.hasOwnProperty("slogan"))
+                            if (message.slogan != null && message.hasOwnProperty('slogan'))
                                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.slogan);
                             return writer;
                         };
@@ -216,12 +216,12 @@ $root.com = (function() {
                          * @returns {string|null} `null` if valid, otherwise the reason why it is not
                          */
                         Promotion.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.variety != null && message.hasOwnProperty("variety"))
+                            if (typeof message !== 'object' || message === null)
+                                return 'object expected';
+                            if (message.variety != null && message.hasOwnProperty('variety'))
                                 switch (message.variety) {
                                 default:
-                                    return "variety: enum value expected";
+                                    return 'variety: enum value expected';
                                 case 0:
                                 case 1:
                                 case 2:
@@ -229,9 +229,9 @@ $root.com = (function() {
                                 case 4:
                                     break;
                                 }
-                            if (message.slogan != null && message.hasOwnProperty("slogan"))
+                            if (message.slogan != null && message.hasOwnProperty('slogan'))
                                 if (!$util.isString(message.slogan))
-                                    return "slogan: string expected";
+                                    return 'slogan: string expected';
                             return null;
                         };
 
@@ -248,23 +248,23 @@ $root.com = (function() {
                                 return object;
                             var message = new $root.com.ele.model.dto.ele.Promotion();
                             switch (object.variety) {
-                            case "NONE":
+                            case 'NONE':
                             case 0:
                                 message.variety = 0;
                                 break;
-                            case "NEW":
+                            case 'NEW':
                             case 1:
                                 message.variety = 1;
                                 break;
-                            case "SUBTRACTION":
+                            case 'SUBTRACTION':
                             case 2:
                                 message.variety = 2;
                                 break;
-                            case "SPECIAL":
+                            case 'SPECIAL':
                             case 3:
                                 message.variety = 3;
                                 break;
-                            case "DISCOUNT":
+                            case 'DISCOUNT':
                             case 4:
                                 message.variety = 4;
                                 break;
@@ -288,12 +288,12 @@ $root.com = (function() {
                                 options = {};
                             var object = {};
                             if (options.defaults) {
-                                object.variety = options.enums === String ? "NONE" : 0;
-                                object.slogan = "";
+                                object.variety = options.enums === String ? 'NONE' : 0;
+                                object.slogan = '';
                             }
-                            if (message.variety != null && message.hasOwnProperty("variety"))
+                            if (message.variety != null && message.hasOwnProperty('variety'))
                                 object.variety = options.enums === String ? $root.com.ele.model.dto.ele.PromotionType[message.variety] : message.variety;
-                            if (message.slogan != null && message.hasOwnProperty("slogan"))
+                            if (message.slogan != null && message.hasOwnProperty('slogan'))
                                 object.slogan = message.slogan;
                             return object;
                         };
@@ -349,7 +349,7 @@ $root.com = (function() {
                          * @memberof com.ele.model.dto.ele.Good
                          * @instance
                          */
-                        Good.prototype.imgUrl = "";
+                        Good.prototype.imgUrl = '';
 
                         /**
                          * Good name.
@@ -357,7 +357,7 @@ $root.com = (function() {
                          * @memberof com.ele.model.dto.ele.Good
                          * @instance
                          */
-                        Good.prototype.name = "";
+                        Good.prototype.name = '';
 
                         /**
                          * Good desc.
@@ -365,7 +365,7 @@ $root.com = (function() {
                          * @memberof com.ele.model.dto.ele.Good
                          * @instance
                          */
-                        Good.prototype.desc = "";
+                        Good.prototype.desc = '';
 
                         /**
                          * Good monthSale.
@@ -431,21 +431,21 @@ $root.com = (function() {
                         Good.encode = function encode(message, writer) {
                             if (!writer)
                                 writer = $Writer.create();
-                            if (message.imgUrl != null && message.hasOwnProperty("imgUrl"))
+                            if (message.imgUrl != null && message.hasOwnProperty('imgUrl'))
                                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.imgUrl);
-                            if (message.name != null && message.hasOwnProperty("name"))
+                            if (message.name != null && message.hasOwnProperty('name'))
                                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
-                            if (message.desc != null && message.hasOwnProperty("desc"))
+                            if (message.desc != null && message.hasOwnProperty('desc'))
                                 writer.uint32(/* id 3, wireType 2 =*/26).string(message.desc);
-                            if (message.monthSale != null && message.hasOwnProperty("monthSale"))
+                            if (message.monthSale != null && message.hasOwnProperty('monthSale'))
                                 writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.monthSale);
-                            if (message.favorableRate != null && message.hasOwnProperty("favorableRate"))
+                            if (message.favorableRate != null && message.hasOwnProperty('favorableRate'))
                                 writer.uint32(/* id 5, wireType 1 =*/41).double(message.favorableRate);
-                            if (message.oriPrice != null && message.hasOwnProperty("oriPrice"))
+                            if (message.oriPrice != null && message.hasOwnProperty('oriPrice'))
                                 writer.uint32(/* id 6, wireType 1 =*/49).double(message.oriPrice);
-                            if (message.nowPrice != null && message.hasOwnProperty("nowPrice"))
+                            if (message.nowPrice != null && message.hasOwnProperty('nowPrice'))
                                 writer.uint32(/* id 7, wireType 1 =*/57).double(message.nowPrice);
-                            if (message.orderNum != null && message.hasOwnProperty("orderNum"))
+                            if (message.orderNum != null && message.hasOwnProperty('orderNum'))
                                 writer.uint32(/* id 8, wireType 0 =*/64).uint32(message.orderNum);
                             return writer;
                         };
@@ -538,32 +538,32 @@ $root.com = (function() {
                          * @returns {string|null} `null` if valid, otherwise the reason why it is not
                          */
                         Good.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.imgUrl != null && message.hasOwnProperty("imgUrl"))
+                            if (typeof message !== 'object' || message === null)
+                                return 'object expected';
+                            if (message.imgUrl != null && message.hasOwnProperty('imgUrl'))
                                 if (!$util.isString(message.imgUrl))
-                                    return "imgUrl: string expected";
-                            if (message.name != null && message.hasOwnProperty("name"))
+                                    return 'imgUrl: string expected';
+                            if (message.name != null && message.hasOwnProperty('name'))
                                 if (!$util.isString(message.name))
-                                    return "name: string expected";
-                            if (message.desc != null && message.hasOwnProperty("desc"))
+                                    return 'name: string expected';
+                            if (message.desc != null && message.hasOwnProperty('desc'))
                                 if (!$util.isString(message.desc))
-                                    return "desc: string expected";
-                            if (message.monthSale != null && message.hasOwnProperty("monthSale"))
+                                    return 'desc: string expected';
+                            if (message.monthSale != null && message.hasOwnProperty('monthSale'))
                                 if (!$util.isInteger(message.monthSale))
-                                    return "monthSale: integer expected";
-                            if (message.favorableRate != null && message.hasOwnProperty("favorableRate"))
-                                if (typeof message.favorableRate !== "number")
-                                    return "favorableRate: number expected";
-                            if (message.oriPrice != null && message.hasOwnProperty("oriPrice"))
-                                if (typeof message.oriPrice !== "number")
-                                    return "oriPrice: number expected";
-                            if (message.nowPrice != null && message.hasOwnProperty("nowPrice"))
-                                if (typeof message.nowPrice !== "number")
-                                    return "nowPrice: number expected";
-                            if (message.orderNum != null && message.hasOwnProperty("orderNum"))
+                                    return 'monthSale: integer expected';
+                            if (message.favorableRate != null && message.hasOwnProperty('favorableRate'))
+                                if (typeof message.favorableRate !== 'number')
+                                    return 'favorableRate: number expected';
+                            if (message.oriPrice != null && message.hasOwnProperty('oriPrice'))
+                                if (typeof message.oriPrice !== 'number')
+                                    return 'oriPrice: number expected';
+                            if (message.nowPrice != null && message.hasOwnProperty('nowPrice'))
+                                if (typeof message.nowPrice !== 'number')
+                                    return 'nowPrice: number expected';
+                            if (message.orderNum != null && message.hasOwnProperty('orderNum'))
                                 if (!$util.isInteger(message.orderNum))
-                                    return "orderNum: integer expected";
+                                    return 'orderNum: integer expected';
                             return null;
                         };
 
@@ -612,30 +612,30 @@ $root.com = (function() {
                                 options = {};
                             var object = {};
                             if (options.defaults) {
-                                object.imgUrl = "";
-                                object.name = "";
-                                object.desc = "";
+                                object.imgUrl = '';
+                                object.name = '';
+                                object.desc = '';
                                 object.monthSale = 0;
                                 object.favorableRate = 0;
                                 object.oriPrice = 0;
                                 object.nowPrice = 0;
                                 object.orderNum = 0;
                             }
-                            if (message.imgUrl != null && message.hasOwnProperty("imgUrl"))
+                            if (message.imgUrl != null && message.hasOwnProperty('imgUrl'))
                                 object.imgUrl = message.imgUrl;
-                            if (message.name != null && message.hasOwnProperty("name"))
+                            if (message.name != null && message.hasOwnProperty('name'))
                                 object.name = message.name;
-                            if (message.desc != null && message.hasOwnProperty("desc"))
+                            if (message.desc != null && message.hasOwnProperty('desc'))
                                 object.desc = message.desc;
-                            if (message.monthSale != null && message.hasOwnProperty("monthSale"))
+                            if (message.monthSale != null && message.hasOwnProperty('monthSale'))
                                 object.monthSale = message.monthSale;
-                            if (message.favorableRate != null && message.hasOwnProperty("favorableRate"))
+                            if (message.favorableRate != null && message.hasOwnProperty('favorableRate'))
                                 object.favorableRate = options.json && !isFinite(message.favorableRate) ? String(message.favorableRate) : message.favorableRate;
-                            if (message.oriPrice != null && message.hasOwnProperty("oriPrice"))
+                            if (message.oriPrice != null && message.hasOwnProperty('oriPrice'))
                                 object.oriPrice = options.json && !isFinite(message.oriPrice) ? String(message.oriPrice) : message.oriPrice;
-                            if (message.nowPrice != null && message.hasOwnProperty("nowPrice"))
+                            if (message.nowPrice != null && message.hasOwnProperty('nowPrice'))
                                 object.nowPrice = options.json && !isFinite(message.nowPrice) ? String(message.nowPrice) : message.nowPrice;
-                            if (message.orderNum != null && message.hasOwnProperty("orderNum"))
+                            if (message.orderNum != null && message.hasOwnProperty('orderNum'))
                                 object.orderNum = message.orderNum;
                             return object;
                         };
@@ -688,7 +688,7 @@ $root.com = (function() {
                          * @memberof com.ele.model.dto.ele.Variety
                          * @instance
                          */
-                        Variety.prototype.name = "";
+                        Variety.prototype.name = '';
 
                         /**
                          * Variety orderNum.
@@ -704,7 +704,7 @@ $root.com = (function() {
                          * @memberof com.ele.model.dto.ele.Variety
                          * @instance
                          */
-                        Variety.prototype.desc = "";
+                        Variety.prototype.desc = '';
 
                         /**
                          * Variety goodList.
@@ -738,11 +738,11 @@ $root.com = (function() {
                         Variety.encode = function encode(message, writer) {
                             if (!writer)
                                 writer = $Writer.create();
-                            if (message.name != null && message.hasOwnProperty("name"))
+                            if (message.name != null && message.hasOwnProperty('name'))
                                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
-                            if (message.orderNum != null && message.hasOwnProperty("orderNum"))
+                            if (message.orderNum != null && message.hasOwnProperty('orderNum'))
                                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.orderNum);
-                            if (message.desc != null && message.hasOwnProperty("desc"))
+                            if (message.desc != null && message.hasOwnProperty('desc'))
                                 writer.uint32(/* id 3, wireType 2 =*/26).string(message.desc);
                             if (message.goodList != null && message.goodList.length)
                                 for (var i = 0; i < message.goodList.length; ++i)
@@ -828,24 +828,24 @@ $root.com = (function() {
                          * @returns {string|null} `null` if valid, otherwise the reason why it is not
                          */
                         Variety.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.name != null && message.hasOwnProperty("name"))
+                            if (typeof message !== 'object' || message === null)
+                                return 'object expected';
+                            if (message.name != null && message.hasOwnProperty('name'))
                                 if (!$util.isString(message.name))
-                                    return "name: string expected";
-                            if (message.orderNum != null && message.hasOwnProperty("orderNum"))
+                                    return 'name: string expected';
+                            if (message.orderNum != null && message.hasOwnProperty('orderNum'))
                                 if (!$util.isInteger(message.orderNum))
-                                    return "orderNum: integer expected";
-                            if (message.desc != null && message.hasOwnProperty("desc"))
+                                    return 'orderNum: integer expected';
+                            if (message.desc != null && message.hasOwnProperty('desc'))
                                 if (!$util.isString(message.desc))
-                                    return "desc: string expected";
-                            if (message.goodList != null && message.hasOwnProperty("goodList")) {
+                                    return 'desc: string expected';
+                            if (message.goodList != null && message.hasOwnProperty('goodList')) {
                                 if (!Array.isArray(message.goodList))
-                                    return "goodList: array expected";
+                                    return 'goodList: array expected';
                                 for (var i = 0; i < message.goodList.length; ++i) {
                                     var error = $root.com.ele.model.dto.ele.Good.verify(message.goodList[i]);
                                     if (error)
-                                        return "goodList." + error;
+                                        return 'goodList.' + error;
                                 }
                             }
                             return null;
@@ -871,11 +871,11 @@ $root.com = (function() {
                                 message.desc = String(object.desc);
                             if (object.goodList) {
                                 if (!Array.isArray(object.goodList))
-                                    throw TypeError(".com.ele.model.dto.ele.Variety.goodList: array expected");
+                                    throw TypeError('.com.ele.model.dto.ele.Variety.goodList: array expected');
                                 message.goodList = [];
                                 for (var i = 0; i < object.goodList.length; ++i) {
-                                    if (typeof object.goodList[i] !== "object")
-                                        throw TypeError(".com.ele.model.dto.ele.Variety.goodList: object expected");
+                                    if (typeof object.goodList[i] !== 'object')
+                                        throw TypeError('.com.ele.model.dto.ele.Variety.goodList: object expected');
                                     message.goodList[i] = $root.com.ele.model.dto.ele.Good.fromObject(object.goodList[i]);
                                 }
                             }
@@ -898,15 +898,15 @@ $root.com = (function() {
                             if (options.arrays || options.defaults)
                                 object.goodList = [];
                             if (options.defaults) {
-                                object.name = "";
+                                object.name = '';
                                 object.orderNum = 0;
-                                object.desc = "";
+                                object.desc = '';
                             }
-                            if (message.name != null && message.hasOwnProperty("name"))
+                            if (message.name != null && message.hasOwnProperty('name'))
                                 object.name = message.name;
-                            if (message.orderNum != null && message.hasOwnProperty("orderNum"))
+                            if (message.orderNum != null && message.hasOwnProperty('orderNum'))
                                 object.orderNum = message.orderNum;
-                            if (message.desc != null && message.hasOwnProperty("desc"))
+                            if (message.desc != null && message.hasOwnProperty('desc'))
                                 object.desc = message.desc;
                             if (message.goodList && message.goodList.length) {
                                 object.goodList = [];
@@ -976,7 +976,7 @@ $root.com = (function() {
                          * @memberof com.ele.model.dto.ele.ShopProfile
                          * @instance
                          */
-                        ShopProfile.prototype.id = "";
+                        ShopProfile.prototype.id = '';
 
                         /**
                          * ShopProfile imgUrl.
@@ -984,7 +984,7 @@ $root.com = (function() {
                          * @memberof com.ele.model.dto.ele.ShopProfile
                          * @instance
                          */
-                        ShopProfile.prototype.imgUrl = "";
+                        ShopProfile.prototype.imgUrl = '';
 
                         /**
                          * ShopProfile isBrand.
@@ -1000,7 +1000,7 @@ $root.com = (function() {
                          * @memberof com.ele.model.dto.ele.ShopProfile
                          * @instance
                          */
-                        ShopProfile.prototype.shopName = "";
+                        ShopProfile.prototype.shopName = '';
 
                         /**
                          * ShopProfile starNum.
@@ -1048,7 +1048,7 @@ $root.com = (function() {
                          * @memberof com.ele.model.dto.ele.ShopProfile
                          * @instance
                          */
-                        ShopProfile.prototype.needTime = "";
+                        ShopProfile.prototype.needTime = '';
 
                         /**
                          * ShopProfile isBird.
@@ -1122,35 +1122,35 @@ $root.com = (function() {
                         ShopProfile.encode = function encode(message, writer) {
                             if (!writer)
                                 writer = $Writer.create();
-                            if (message.id != null && message.hasOwnProperty("id"))
+                            if (message.id != null && message.hasOwnProperty('id'))
                                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
-                            if (message.imgUrl != null && message.hasOwnProperty("imgUrl"))
+                            if (message.imgUrl != null && message.hasOwnProperty('imgUrl'))
                                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.imgUrl);
-                            if (message.isBrand != null && message.hasOwnProperty("isBrand"))
+                            if (message.isBrand != null && message.hasOwnProperty('isBrand'))
                                 writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isBrand);
-                            if (message.shopName != null && message.hasOwnProperty("shopName"))
+                            if (message.shopName != null && message.hasOwnProperty('shopName'))
                                 writer.uint32(/* id 4, wireType 2 =*/34).string(message.shopName);
-                            if (message.starNum != null && message.hasOwnProperty("starNum"))
+                            if (message.starNum != null && message.hasOwnProperty('starNum'))
                                 writer.uint32(/* id 5, wireType 1 =*/41).double(message.starNum);
-                            if (message.monthlySales != null && message.hasOwnProperty("monthlySales"))
+                            if (message.monthlySales != null && message.hasOwnProperty('monthlySales'))
                                 writer.uint32(/* id 6, wireType 0 =*/48).uint32(message.monthlySales);
-                            if (message.initMoney != null && message.hasOwnProperty("initMoney"))
+                            if (message.initMoney != null && message.hasOwnProperty('initMoney'))
                                 writer.uint32(/* id 7, wireType 1 =*/57).double(message.initMoney);
-                            if (message.deliveryFee != null && message.hasOwnProperty("deliveryFee"))
+                            if (message.deliveryFee != null && message.hasOwnProperty('deliveryFee'))
                                 writer.uint32(/* id 8, wireType 1 =*/65).double(message.deliveryFee);
-                            if (message.distance != null && message.hasOwnProperty("distance"))
+                            if (message.distance != null && message.hasOwnProperty('distance'))
                                 writer.uint32(/* id 9, wireType 1 =*/73).double(message.distance);
-                            if (message.needTime != null && message.hasOwnProperty("needTime"))
+                            if (message.needTime != null && message.hasOwnProperty('needTime'))
                                 writer.uint32(/* id 10, wireType 2 =*/82).string(message.needTime);
-                            if (message.isBird != null && message.hasOwnProperty("isBird"))
+                            if (message.isBird != null && message.hasOwnProperty('isBird'))
                                 writer.uint32(/* id 11, wireType 0 =*/88).bool(message.isBird);
-                            if (message.isOntime != null && message.hasOwnProperty("isOntime"))
+                            if (message.isOntime != null && message.hasOwnProperty('isOntime'))
                                 writer.uint32(/* id 12, wireType 0 =*/96).bool(message.isOntime);
-                            if (message.isInsurance != null && message.hasOwnProperty("isInsurance"))
+                            if (message.isInsurance != null && message.hasOwnProperty('isInsurance'))
                                 writer.uint32(/* id 13, wireType 0 =*/104).bool(message.isInsurance);
-                            if (message.needtip != null && message.hasOwnProperty("needtip"))
+                            if (message.needtip != null && message.hasOwnProperty('needtip'))
                                 writer.uint32(/* id 14, wireType 0 =*/112).bool(message.needtip);
-                            if (message.isNewShop != null && message.hasOwnProperty("isNewShop"))
+                            if (message.isNewShop != null && message.hasOwnProperty('isNewShop'))
                                 writer.uint32(/* id 15, wireType 0 =*/120).bool(message.isNewShop);
                             if (message.shopActivity != null && message.shopActivity.length)
                                 for (var i = 0; i < message.shopActivity.length; ++i)
@@ -1272,60 +1272,60 @@ $root.com = (function() {
                          * @returns {string|null} `null` if valid, otherwise the reason why it is not
                          */
                         ShopProfile.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.id != null && message.hasOwnProperty("id"))
+                            if (typeof message !== 'object' || message === null)
+                                return 'object expected';
+                            if (message.id != null && message.hasOwnProperty('id'))
                                 if (!$util.isString(message.id))
-                                    return "id: string expected";
-                            if (message.imgUrl != null && message.hasOwnProperty("imgUrl"))
+                                    return 'id: string expected';
+                            if (message.imgUrl != null && message.hasOwnProperty('imgUrl'))
                                 if (!$util.isString(message.imgUrl))
-                                    return "imgUrl: string expected";
-                            if (message.isBrand != null && message.hasOwnProperty("isBrand"))
-                                if (typeof message.isBrand !== "boolean")
-                                    return "isBrand: boolean expected";
-                            if (message.shopName != null && message.hasOwnProperty("shopName"))
+                                    return 'imgUrl: string expected';
+                            if (message.isBrand != null && message.hasOwnProperty('isBrand'))
+                                if (typeof message.isBrand !== 'boolean')
+                                    return 'isBrand: boolean expected';
+                            if (message.shopName != null && message.hasOwnProperty('shopName'))
                                 if (!$util.isString(message.shopName))
-                                    return "shopName: string expected";
-                            if (message.starNum != null && message.hasOwnProperty("starNum"))
-                                if (typeof message.starNum !== "number")
-                                    return "starNum: number expected";
-                            if (message.monthlySales != null && message.hasOwnProperty("monthlySales"))
+                                    return 'shopName: string expected';
+                            if (message.starNum != null && message.hasOwnProperty('starNum'))
+                                if (typeof message.starNum !== 'number')
+                                    return 'starNum: number expected';
+                            if (message.monthlySales != null && message.hasOwnProperty('monthlySales'))
                                 if (!$util.isInteger(message.monthlySales))
-                                    return "monthlySales: integer expected";
-                            if (message.initMoney != null && message.hasOwnProperty("initMoney"))
-                                if (typeof message.initMoney !== "number")
-                                    return "initMoney: number expected";
-                            if (message.deliveryFee != null && message.hasOwnProperty("deliveryFee"))
-                                if (typeof message.deliveryFee !== "number")
-                                    return "deliveryFee: number expected";
-                            if (message.distance != null && message.hasOwnProperty("distance"))
-                                if (typeof message.distance !== "number")
-                                    return "distance: number expected";
-                            if (message.needTime != null && message.hasOwnProperty("needTime"))
+                                    return 'monthlySales: integer expected';
+                            if (message.initMoney != null && message.hasOwnProperty('initMoney'))
+                                if (typeof message.initMoney !== 'number')
+                                    return 'initMoney: number expected';
+                            if (message.deliveryFee != null && message.hasOwnProperty('deliveryFee'))
+                                if (typeof message.deliveryFee !== 'number')
+                                    return 'deliveryFee: number expected';
+                            if (message.distance != null && message.hasOwnProperty('distance'))
+                                if (typeof message.distance !== 'number')
+                                    return 'distance: number expected';
+                            if (message.needTime != null && message.hasOwnProperty('needTime'))
                                 if (!$util.isString(message.needTime))
-                                    return "needTime: string expected";
-                            if (message.isBird != null && message.hasOwnProperty("isBird"))
-                                if (typeof message.isBird !== "boolean")
-                                    return "isBird: boolean expected";
-                            if (message.isOntime != null && message.hasOwnProperty("isOntime"))
-                                if (typeof message.isOntime !== "boolean")
-                                    return "isOntime: boolean expected";
-                            if (message.isInsurance != null && message.hasOwnProperty("isInsurance"))
-                                if (typeof message.isInsurance !== "boolean")
-                                    return "isInsurance: boolean expected";
-                            if (message.needtip != null && message.hasOwnProperty("needtip"))
-                                if (typeof message.needtip !== "boolean")
-                                    return "needtip: boolean expected";
-                            if (message.isNewShop != null && message.hasOwnProperty("isNewShop"))
-                                if (typeof message.isNewShop !== "boolean")
-                                    return "isNewShop: boolean expected";
-                            if (message.shopActivity != null && message.hasOwnProperty("shopActivity")) {
+                                    return 'needTime: string expected';
+                            if (message.isBird != null && message.hasOwnProperty('isBird'))
+                                if (typeof message.isBird !== 'boolean')
+                                    return 'isBird: boolean expected';
+                            if (message.isOntime != null && message.hasOwnProperty('isOntime'))
+                                if (typeof message.isOntime !== 'boolean')
+                                    return 'isOntime: boolean expected';
+                            if (message.isInsurance != null && message.hasOwnProperty('isInsurance'))
+                                if (typeof message.isInsurance !== 'boolean')
+                                    return 'isInsurance: boolean expected';
+                            if (message.needtip != null && message.hasOwnProperty('needtip'))
+                                if (typeof message.needtip !== 'boolean')
+                                    return 'needtip: boolean expected';
+                            if (message.isNewShop != null && message.hasOwnProperty('isNewShop'))
+                                if (typeof message.isNewShop !== 'boolean')
+                                    return 'isNewShop: boolean expected';
+                            if (message.shopActivity != null && message.hasOwnProperty('shopActivity')) {
                                 if (!Array.isArray(message.shopActivity))
-                                    return "shopActivity: array expected";
+                                    return 'shopActivity: array expected';
                                 for (var i = 0; i < message.shopActivity.length; ++i) {
                                     var error = $root.com.ele.model.dto.ele.Promotion.verify(message.shopActivity[i]);
                                     if (error)
-                                        return "shopActivity." + error;
+                                        return 'shopActivity.' + error;
                                 }
                             }
                             return null;
@@ -1375,11 +1375,11 @@ $root.com = (function() {
                                 message.isNewShop = Boolean(object.isNewShop);
                             if (object.shopActivity) {
                                 if (!Array.isArray(object.shopActivity))
-                                    throw TypeError(".com.ele.model.dto.ele.ShopProfile.shopActivity: array expected");
+                                    throw TypeError('.com.ele.model.dto.ele.ShopProfile.shopActivity: array expected');
                                 message.shopActivity = [];
                                 for (var i = 0; i < object.shopActivity.length; ++i) {
-                                    if (typeof object.shopActivity[i] !== "object")
-                                        throw TypeError(".com.ele.model.dto.ele.ShopProfile.shopActivity: object expected");
+                                    if (typeof object.shopActivity[i] !== 'object')
+                                        throw TypeError('.com.ele.model.dto.ele.ShopProfile.shopActivity: object expected');
                                     message.shopActivity[i] = $root.com.ele.model.dto.ele.Promotion.fromObject(object.shopActivity[i]);
                                 }
                             }
@@ -1402,51 +1402,51 @@ $root.com = (function() {
                             if (options.arrays || options.defaults)
                                 object.shopActivity = [];
                             if (options.defaults) {
-                                object.id = "";
-                                object.imgUrl = "";
+                                object.id = '';
+                                object.imgUrl = '';
                                 object.isBrand = false;
-                                object.shopName = "";
+                                object.shopName = '';
                                 object.starNum = 0;
                                 object.monthlySales = 0;
                                 object.initMoney = 0;
                                 object.deliveryFee = 0;
                                 object.distance = 0;
-                                object.needTime = "";
+                                object.needTime = '';
                                 object.isBird = false;
                                 object.isOntime = false;
                                 object.isInsurance = false;
                                 object.needtip = false;
                                 object.isNewShop = false;
                             }
-                            if (message.id != null && message.hasOwnProperty("id"))
+                            if (message.id != null && message.hasOwnProperty('id'))
                                 object.id = message.id;
-                            if (message.imgUrl != null && message.hasOwnProperty("imgUrl"))
+                            if (message.imgUrl != null && message.hasOwnProperty('imgUrl'))
                                 object.imgUrl = message.imgUrl;
-                            if (message.isBrand != null && message.hasOwnProperty("isBrand"))
+                            if (message.isBrand != null && message.hasOwnProperty('isBrand'))
                                 object.isBrand = message.isBrand;
-                            if (message.shopName != null && message.hasOwnProperty("shopName"))
+                            if (message.shopName != null && message.hasOwnProperty('shopName'))
                                 object.shopName = message.shopName;
-                            if (message.starNum != null && message.hasOwnProperty("starNum"))
+                            if (message.starNum != null && message.hasOwnProperty('starNum'))
                                 object.starNum = options.json && !isFinite(message.starNum) ? String(message.starNum) : message.starNum;
-                            if (message.monthlySales != null && message.hasOwnProperty("monthlySales"))
+                            if (message.monthlySales != null && message.hasOwnProperty('monthlySales'))
                                 object.monthlySales = message.monthlySales;
-                            if (message.initMoney != null && message.hasOwnProperty("initMoney"))
+                            if (message.initMoney != null && message.hasOwnProperty('initMoney'))
                                 object.initMoney = options.json && !isFinite(message.initMoney) ? String(message.initMoney) : message.initMoney;
-                            if (message.deliveryFee != null && message.hasOwnProperty("deliveryFee"))
+                            if (message.deliveryFee != null && message.hasOwnProperty('deliveryFee'))
                                 object.deliveryFee = options.json && !isFinite(message.deliveryFee) ? String(message.deliveryFee) : message.deliveryFee;
-                            if (message.distance != null && message.hasOwnProperty("distance"))
+                            if (message.distance != null && message.hasOwnProperty('distance'))
                                 object.distance = options.json && !isFinite(message.distance) ? String(message.distance) : message.distance;
-                            if (message.needTime != null && message.hasOwnProperty("needTime"))
+                            if (message.needTime != null && message.hasOwnProperty('needTime'))
                                 object.needTime = message.needTime;
-                            if (message.isBird != null && message.hasOwnProperty("isBird"))
+                            if (message.isBird != null && message.hasOwnProperty('isBird'))
                                 object.isBird = message.isBird;
-                            if (message.isOntime != null && message.hasOwnProperty("isOntime"))
+                            if (message.isOntime != null && message.hasOwnProperty('isOntime'))
                                 object.isOntime = message.isOntime;
-                            if (message.isInsurance != null && message.hasOwnProperty("isInsurance"))
+                            if (message.isInsurance != null && message.hasOwnProperty('isInsurance'))
                                 object.isInsurance = message.isInsurance;
-                            if (message.needtip != null && message.hasOwnProperty("needtip"))
+                            if (message.needtip != null && message.hasOwnProperty('needtip'))
                                 object.needtip = message.needtip;
-                            if (message.isNewShop != null && message.hasOwnProperty("isNewShop"))
+                            if (message.isNewShop != null && message.hasOwnProperty('isNewShop'))
                                 object.isNewShop = message.isNewShop;
                             if (message.shopActivity && message.shopActivity.length) {
                                 object.shopActivity = [];
@@ -1514,7 +1514,7 @@ $root.com = (function() {
                          * @memberof com.ele.model.dto.ele.ShopDetail
                          * @instance
                          */
-                        ShopDetail.prototype.shopImgUrl = "";
+                        ShopDetail.prototype.shopImgUrl = '';
 
                         /**
                          * ShopDetail shopName.
@@ -1522,7 +1522,7 @@ $root.com = (function() {
                          * @memberof com.ele.model.dto.ele.ShopDetail
                          * @instance
                          */
-                        ShopDetail.prototype.shopName = "";
+                        ShopDetail.prototype.shopName = '';
 
                         /**
                          * ShopDetail shopAddress.
@@ -1530,7 +1530,7 @@ $root.com = (function() {
                          * @memberof com.ele.model.dto.ele.ShopDetail
                          * @instance
                          */
-                        ShopDetail.prototype.shopAddress = "";
+                        ShopDetail.prototype.shopAddress = '';
 
                         /**
                          * ShopDetail shopService.
@@ -1538,7 +1538,7 @@ $root.com = (function() {
                          * @memberof com.ele.model.dto.ele.ShopDetail
                          * @instance
                          */
-                        ShopDetail.prototype.shopService = "";
+                        ShopDetail.prototype.shopService = '';
 
                         /**
                          * ShopDetail announcement.
@@ -1546,7 +1546,7 @@ $root.com = (function() {
                          * @memberof com.ele.model.dto.ele.ShopDetail
                          * @instance
                          */
-                        ShopDetail.prototype.announcement = "";
+                        ShopDetail.prototype.announcement = '';
 
                         /**
                          * ShopDetail openTime.
@@ -1554,7 +1554,7 @@ $root.com = (function() {
                          * @memberof com.ele.model.dto.ele.ShopDetail
                          * @instance
                          */
-                        ShopDetail.prototype.openTime = "";
+                        ShopDetail.prototype.openTime = '';
 
                         /**
                          * ShopDetail slogan.
@@ -1562,7 +1562,7 @@ $root.com = (function() {
                          * @memberof com.ele.model.dto.ele.ShopDetail
                          * @instance
                          */
-                        ShopDetail.prototype.slogan = "";
+                        ShopDetail.prototype.slogan = '';
 
                         /**
                          * ShopDetail starNum.
@@ -1636,27 +1636,27 @@ $root.com = (function() {
                         ShopDetail.encode = function encode(message, writer) {
                             if (!writer)
                                 writer = $Writer.create();
-                            if (message.shopImgUrl != null && message.hasOwnProperty("shopImgUrl"))
+                            if (message.shopImgUrl != null && message.hasOwnProperty('shopImgUrl'))
                                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.shopImgUrl);
-                            if (message.shopName != null && message.hasOwnProperty("shopName"))
+                            if (message.shopName != null && message.hasOwnProperty('shopName'))
                                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.shopName);
-                            if (message.shopAddress != null && message.hasOwnProperty("shopAddress"))
+                            if (message.shopAddress != null && message.hasOwnProperty('shopAddress'))
                                 writer.uint32(/* id 3, wireType 2 =*/26).string(message.shopAddress);
-                            if (message.shopService != null && message.hasOwnProperty("shopService"))
+                            if (message.shopService != null && message.hasOwnProperty('shopService'))
                                 writer.uint32(/* id 4, wireType 2 =*/34).string(message.shopService);
-                            if (message.announcement != null && message.hasOwnProperty("announcement"))
+                            if (message.announcement != null && message.hasOwnProperty('announcement'))
                                 writer.uint32(/* id 5, wireType 2 =*/42).string(message.announcement);
-                            if (message.openTime != null && message.hasOwnProperty("openTime"))
+                            if (message.openTime != null && message.hasOwnProperty('openTime'))
                                 writer.uint32(/* id 6, wireType 2 =*/50).string(message.openTime);
-                            if (message.slogan != null && message.hasOwnProperty("slogan"))
+                            if (message.slogan != null && message.hasOwnProperty('slogan'))
                                 writer.uint32(/* id 7, wireType 2 =*/58).string(message.slogan);
-                            if (message.starNum != null && message.hasOwnProperty("starNum"))
+                            if (message.starNum != null && message.hasOwnProperty('starNum'))
                                 writer.uint32(/* id 8, wireType 1 =*/65).double(message.starNum);
-                            if (message.deliveryFee != null && message.hasOwnProperty("deliveryFee"))
+                            if (message.deliveryFee != null && message.hasOwnProperty('deliveryFee'))
                                 writer.uint32(/* id 9, wireType 1 =*/73).double(message.deliveryFee);
-                            if (message.sendThreshold != null && message.hasOwnProperty("sendThreshold"))
+                            if (message.sendThreshold != null && message.hasOwnProperty('sendThreshold'))
                                 writer.uint32(/* id 10, wireType 1 =*/81).double(message.sendThreshold);
-                            if (message.activityNum != null && message.hasOwnProperty("activityNum"))
+                            if (message.activityNum != null && message.hasOwnProperty('activityNum'))
                                 writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.activityNum);
                             if (message.shopActivity != null && message.shopActivity.length)
                                 for (var i = 0; i < message.shopActivity.length; ++i)
@@ -1774,57 +1774,57 @@ $root.com = (function() {
                          * @returns {string|null} `null` if valid, otherwise the reason why it is not
                          */
                         ShopDetail.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.shopImgUrl != null && message.hasOwnProperty("shopImgUrl"))
+                            if (typeof message !== 'object' || message === null)
+                                return 'object expected';
+                            if (message.shopImgUrl != null && message.hasOwnProperty('shopImgUrl'))
                                 if (!$util.isString(message.shopImgUrl))
-                                    return "shopImgUrl: string expected";
-                            if (message.shopName != null && message.hasOwnProperty("shopName"))
+                                    return 'shopImgUrl: string expected';
+                            if (message.shopName != null && message.hasOwnProperty('shopName'))
                                 if (!$util.isString(message.shopName))
-                                    return "shopName: string expected";
-                            if (message.shopAddress != null && message.hasOwnProperty("shopAddress"))
+                                    return 'shopName: string expected';
+                            if (message.shopAddress != null && message.hasOwnProperty('shopAddress'))
                                 if (!$util.isString(message.shopAddress))
-                                    return "shopAddress: string expected";
-                            if (message.shopService != null && message.hasOwnProperty("shopService"))
+                                    return 'shopAddress: string expected';
+                            if (message.shopService != null && message.hasOwnProperty('shopService'))
                                 if (!$util.isString(message.shopService))
-                                    return "shopService: string expected";
-                            if (message.announcement != null && message.hasOwnProperty("announcement"))
+                                    return 'shopService: string expected';
+                            if (message.announcement != null && message.hasOwnProperty('announcement'))
                                 if (!$util.isString(message.announcement))
-                                    return "announcement: string expected";
-                            if (message.openTime != null && message.hasOwnProperty("openTime"))
+                                    return 'announcement: string expected';
+                            if (message.openTime != null && message.hasOwnProperty('openTime'))
                                 if (!$util.isString(message.openTime))
-                                    return "openTime: string expected";
-                            if (message.slogan != null && message.hasOwnProperty("slogan"))
+                                    return 'openTime: string expected';
+                            if (message.slogan != null && message.hasOwnProperty('slogan'))
                                 if (!$util.isString(message.slogan))
-                                    return "slogan: string expected";
-                            if (message.starNum != null && message.hasOwnProperty("starNum"))
-                                if (typeof message.starNum !== "number")
-                                    return "starNum: number expected";
-                            if (message.deliveryFee != null && message.hasOwnProperty("deliveryFee"))
-                                if (typeof message.deliveryFee !== "number")
-                                    return "deliveryFee: number expected";
-                            if (message.sendThreshold != null && message.hasOwnProperty("sendThreshold"))
-                                if (typeof message.sendThreshold !== "number")
-                                    return "sendThreshold: number expected";
-                            if (message.activityNum != null && message.hasOwnProperty("activityNum"))
+                                    return 'slogan: string expected';
+                            if (message.starNum != null && message.hasOwnProperty('starNum'))
+                                if (typeof message.starNum !== 'number')
+                                    return 'starNum: number expected';
+                            if (message.deliveryFee != null && message.hasOwnProperty('deliveryFee'))
+                                if (typeof message.deliveryFee !== 'number')
+                                    return 'deliveryFee: number expected';
+                            if (message.sendThreshold != null && message.hasOwnProperty('sendThreshold'))
+                                if (typeof message.sendThreshold !== 'number')
+                                    return 'sendThreshold: number expected';
+                            if (message.activityNum != null && message.hasOwnProperty('activityNum'))
                                 if (!$util.isInteger(message.activityNum))
-                                    return "activityNum: integer expected";
-                            if (message.shopActivity != null && message.hasOwnProperty("shopActivity")) {
+                                    return 'activityNum: integer expected';
+                            if (message.shopActivity != null && message.hasOwnProperty('shopActivity')) {
                                 if (!Array.isArray(message.shopActivity))
-                                    return "shopActivity: array expected";
+                                    return 'shopActivity: array expected';
                                 for (var i = 0; i < message.shopActivity.length; ++i) {
                                     var error = $root.com.ele.model.dto.ele.Promotion.verify(message.shopActivity[i]);
                                     if (error)
-                                        return "shopActivity." + error;
+                                        return 'shopActivity.' + error;
                                 }
                             }
-                            if (message.varietyList != null && message.hasOwnProperty("varietyList")) {
+                            if (message.varietyList != null && message.hasOwnProperty('varietyList')) {
                                 if (!Array.isArray(message.varietyList))
-                                    return "varietyList: array expected";
+                                    return 'varietyList: array expected';
                                 for (var i = 0; i < message.varietyList.length; ++i) {
                                     var error = $root.com.ele.model.dto.ele.Variety.verify(message.varietyList[i]);
                                     if (error)
-                                        return "varietyList." + error;
+                                        return 'varietyList.' + error;
                                 }
                             }
                             return null;
@@ -1866,21 +1866,21 @@ $root.com = (function() {
                                 message.activityNum = object.activityNum >>> 0;
                             if (object.shopActivity) {
                                 if (!Array.isArray(object.shopActivity))
-                                    throw TypeError(".com.ele.model.dto.ele.ShopDetail.shopActivity: array expected");
+                                    throw TypeError('.com.ele.model.dto.ele.ShopDetail.shopActivity: array expected');
                                 message.shopActivity = [];
                                 for (var i = 0; i < object.shopActivity.length; ++i) {
-                                    if (typeof object.shopActivity[i] !== "object")
-                                        throw TypeError(".com.ele.model.dto.ele.ShopDetail.shopActivity: object expected");
+                                    if (typeof object.shopActivity[i] !== 'object')
+                                        throw TypeError('.com.ele.model.dto.ele.ShopDetail.shopActivity: object expected');
                                     message.shopActivity[i] = $root.com.ele.model.dto.ele.Promotion.fromObject(object.shopActivity[i]);
                                 }
                             }
                             if (object.varietyList) {
                                 if (!Array.isArray(object.varietyList))
-                                    throw TypeError(".com.ele.model.dto.ele.ShopDetail.varietyList: array expected");
+                                    throw TypeError('.com.ele.model.dto.ele.ShopDetail.varietyList: array expected');
                                 message.varietyList = [];
                                 for (var i = 0; i < object.varietyList.length; ++i) {
-                                    if (typeof object.varietyList[i] !== "object")
-                                        throw TypeError(".com.ele.model.dto.ele.ShopDetail.varietyList: object expected");
+                                    if (typeof object.varietyList[i] !== 'object')
+                                        throw TypeError('.com.ele.model.dto.ele.ShopDetail.varietyList: object expected');
                                     message.varietyList[i] = $root.com.ele.model.dto.ele.Variety.fromObject(object.varietyList[i]);
                                 }
                             }
@@ -1905,39 +1905,39 @@ $root.com = (function() {
                                 object.varietyList = [];
                             }
                             if (options.defaults) {
-                                object.shopImgUrl = "";
-                                object.shopName = "";
-                                object.shopAddress = "";
-                                object.shopService = "";
-                                object.announcement = "";
-                                object.openTime = "";
-                                object.slogan = "";
+                                object.shopImgUrl = '';
+                                object.shopName = '';
+                                object.shopAddress = '';
+                                object.shopService = '';
+                                object.announcement = '';
+                                object.openTime = '';
+                                object.slogan = '';
                                 object.starNum = 0;
                                 object.deliveryFee = 0;
                                 object.sendThreshold = 0;
                                 object.activityNum = 0;
                             }
-                            if (message.shopImgUrl != null && message.hasOwnProperty("shopImgUrl"))
+                            if (message.shopImgUrl != null && message.hasOwnProperty('shopImgUrl'))
                                 object.shopImgUrl = message.shopImgUrl;
-                            if (message.shopName != null && message.hasOwnProperty("shopName"))
+                            if (message.shopName != null && message.hasOwnProperty('shopName'))
                                 object.shopName = message.shopName;
-                            if (message.shopAddress != null && message.hasOwnProperty("shopAddress"))
+                            if (message.shopAddress != null && message.hasOwnProperty('shopAddress'))
                                 object.shopAddress = message.shopAddress;
-                            if (message.shopService != null && message.hasOwnProperty("shopService"))
+                            if (message.shopService != null && message.hasOwnProperty('shopService'))
                                 object.shopService = message.shopService;
-                            if (message.announcement != null && message.hasOwnProperty("announcement"))
+                            if (message.announcement != null && message.hasOwnProperty('announcement'))
                                 object.announcement = message.announcement;
-                            if (message.openTime != null && message.hasOwnProperty("openTime"))
+                            if (message.openTime != null && message.hasOwnProperty('openTime'))
                                 object.openTime = message.openTime;
-                            if (message.slogan != null && message.hasOwnProperty("slogan"))
+                            if (message.slogan != null && message.hasOwnProperty('slogan'))
                                 object.slogan = message.slogan;
-                            if (message.starNum != null && message.hasOwnProperty("starNum"))
+                            if (message.starNum != null && message.hasOwnProperty('starNum'))
                                 object.starNum = options.json && !isFinite(message.starNum) ? String(message.starNum) : message.starNum;
-                            if (message.deliveryFee != null && message.hasOwnProperty("deliveryFee"))
+                            if (message.deliveryFee != null && message.hasOwnProperty('deliveryFee'))
                                 object.deliveryFee = options.json && !isFinite(message.deliveryFee) ? String(message.deliveryFee) : message.deliveryFee;
-                            if (message.sendThreshold != null && message.hasOwnProperty("sendThreshold"))
+                            if (message.sendThreshold != null && message.hasOwnProperty('sendThreshold'))
                                 object.sendThreshold = options.json && !isFinite(message.sendThreshold) ? String(message.sendThreshold) : message.sendThreshold;
-                            if (message.activityNum != null && message.hasOwnProperty("activityNum"))
+                            if (message.activityNum != null && message.hasOwnProperty('activityNum'))
                                 object.activityNum = message.activityNum;
                             if (message.shopActivity && message.shopActivity.length) {
                                 object.shopActivity = [];
@@ -1997,7 +1997,7 @@ $root.com = (function() {
                          * @memberof com.ele.model.dto.ele.EvaluationStamp
                          * @instance
                          */
-                        EvaluationStamp.prototype.name = "";
+                        EvaluationStamp.prototype.name = '';
 
                         /**
                          * EvaluationStamp num.
@@ -2031,9 +2031,9 @@ $root.com = (function() {
                         EvaluationStamp.encode = function encode(message, writer) {
                             if (!writer)
                                 writer = $Writer.create();
-                            if (message.name != null && message.hasOwnProperty("name"))
+                            if (message.name != null && message.hasOwnProperty('name'))
                                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
-                            if (message.num != null && message.hasOwnProperty("num"))
+                            if (message.num != null && message.hasOwnProperty('num'))
                                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.num);
                             return writer;
                         };
@@ -2108,14 +2108,14 @@ $root.com = (function() {
                          * @returns {string|null} `null` if valid, otherwise the reason why it is not
                          */
                         EvaluationStamp.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.name != null && message.hasOwnProperty("name"))
+                            if (typeof message !== 'object' || message === null)
+                                return 'object expected';
+                            if (message.name != null && message.hasOwnProperty('name'))
                                 if (!$util.isString(message.name))
-                                    return "name: string expected";
-                            if (message.num != null && message.hasOwnProperty("num"))
+                                    return 'name: string expected';
+                            if (message.num != null && message.hasOwnProperty('num'))
                                 if (!$util.isInteger(message.num))
-                                    return "num: integer expected";
+                                    return 'num: integer expected';
                             return null;
                         };
 
@@ -2152,12 +2152,12 @@ $root.com = (function() {
                                 options = {};
                             var object = {};
                             if (options.defaults) {
-                                object.name = "";
+                                object.name = '';
                                 object.num = 0;
                             }
-                            if (message.name != null && message.hasOwnProperty("name"))
+                            if (message.name != null && message.hasOwnProperty('name'))
                                 object.name = message.name;
-                            if (message.num != null && message.hasOwnProperty("num"))
+                            if (message.num != null && message.hasOwnProperty('num'))
                                 object.num = message.num;
                             return object;
                         };
@@ -2213,7 +2213,7 @@ $root.com = (function() {
                          * @memberof com.ele.model.dto.ele.EvaluationComment
                          * @instance
                          */
-                        EvaluationComment.prototype.profileImg = "";
+                        EvaluationComment.prototype.profileImg = '';
 
                         /**
                          * EvaluationComment name.
@@ -2221,7 +2221,7 @@ $root.com = (function() {
                          * @memberof com.ele.model.dto.ele.EvaluationComment
                          * @instance
                          */
-                        EvaluationComment.prototype.name = "";
+                        EvaluationComment.prototype.name = '';
 
                         /**
                          * EvaluationComment time.
@@ -2229,7 +2229,7 @@ $root.com = (function() {
                          * @memberof com.ele.model.dto.ele.EvaluationComment
                          * @instance
                          */
-                        EvaluationComment.prototype.time = "";
+                        EvaluationComment.prototype.time = '';
 
                         /**
                          * EvaluationComment foods.
@@ -2245,7 +2245,7 @@ $root.com = (function() {
                          * @memberof com.ele.model.dto.ele.EvaluationComment
                          * @instance
                          */
-                        EvaluationComment.prototype.content = "";
+                        EvaluationComment.prototype.content = '';
 
                         /**
                          * EvaluationComment costTime.
@@ -2253,7 +2253,7 @@ $root.com = (function() {
                          * @memberof com.ele.model.dto.ele.EvaluationComment
                          * @instance
                          */
-                        EvaluationComment.prototype.costTime = "";
+                        EvaluationComment.prototype.costTime = '';
 
                         /**
                          * EvaluationComment star.
@@ -2287,20 +2287,20 @@ $root.com = (function() {
                         EvaluationComment.encode = function encode(message, writer) {
                             if (!writer)
                                 writer = $Writer.create();
-                            if (message.profileImg != null && message.hasOwnProperty("profileImg"))
+                            if (message.profileImg != null && message.hasOwnProperty('profileImg'))
                                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.profileImg);
-                            if (message.name != null && message.hasOwnProperty("name"))
+                            if (message.name != null && message.hasOwnProperty('name'))
                                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
-                            if (message.time != null && message.hasOwnProperty("time"))
+                            if (message.time != null && message.hasOwnProperty('time'))
                                 writer.uint32(/* id 3, wireType 2 =*/26).string(message.time);
                             if (message.foods != null && message.foods.length)
                                 for (var i = 0; i < message.foods.length; ++i)
                                     writer.uint32(/* id 4, wireType 2 =*/34).string(message.foods[i]);
-                            if (message.content != null && message.hasOwnProperty("content"))
+                            if (message.content != null && message.hasOwnProperty('content'))
                                 writer.uint32(/* id 5, wireType 2 =*/42).string(message.content);
-                            if (message.costTime != null && message.hasOwnProperty("costTime"))
+                            if (message.costTime != null && message.hasOwnProperty('costTime'))
                                 writer.uint32(/* id 6, wireType 2 =*/50).string(message.costTime);
-                            if (message.star != null && message.hasOwnProperty("star"))
+                            if (message.star != null && message.hasOwnProperty('star'))
                                 writer.uint32(/* id 7, wireType 1 =*/57).double(message.star);
                             return writer;
                         };
@@ -2392,33 +2392,33 @@ $root.com = (function() {
                          * @returns {string|null} `null` if valid, otherwise the reason why it is not
                          */
                         EvaluationComment.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.profileImg != null && message.hasOwnProperty("profileImg"))
+                            if (typeof message !== 'object' || message === null)
+                                return 'object expected';
+                            if (message.profileImg != null && message.hasOwnProperty('profileImg'))
                                 if (!$util.isString(message.profileImg))
-                                    return "profileImg: string expected";
-                            if (message.name != null && message.hasOwnProperty("name"))
+                                    return 'profileImg: string expected';
+                            if (message.name != null && message.hasOwnProperty('name'))
                                 if (!$util.isString(message.name))
-                                    return "name: string expected";
-                            if (message.time != null && message.hasOwnProperty("time"))
+                                    return 'name: string expected';
+                            if (message.time != null && message.hasOwnProperty('time'))
                                 if (!$util.isString(message.time))
-                                    return "time: string expected";
-                            if (message.foods != null && message.hasOwnProperty("foods")) {
+                                    return 'time: string expected';
+                            if (message.foods != null && message.hasOwnProperty('foods')) {
                                 if (!Array.isArray(message.foods))
-                                    return "foods: array expected";
+                                    return 'foods: array expected';
                                 for (var i = 0; i < message.foods.length; ++i)
                                     if (!$util.isString(message.foods[i]))
-                                        return "foods: string[] expected";
+                                        return 'foods: string[] expected';
                             }
-                            if (message.content != null && message.hasOwnProperty("content"))
+                            if (message.content != null && message.hasOwnProperty('content'))
                                 if (!$util.isString(message.content))
-                                    return "content: string expected";
-                            if (message.costTime != null && message.hasOwnProperty("costTime"))
+                                    return 'content: string expected';
+                            if (message.costTime != null && message.hasOwnProperty('costTime'))
                                 if (!$util.isString(message.costTime))
-                                    return "costTime: string expected";
-                            if (message.star != null && message.hasOwnProperty("star"))
-                                if (typeof message.star !== "number")
-                                    return "star: number expected";
+                                    return 'costTime: string expected';
+                            if (message.star != null && message.hasOwnProperty('star'))
+                                if (typeof message.star !== 'number')
+                                    return 'star: number expected';
                             return null;
                         };
 
@@ -2442,7 +2442,7 @@ $root.com = (function() {
                                 message.time = String(object.time);
                             if (object.foods) {
                                 if (!Array.isArray(object.foods))
-                                    throw TypeError(".com.ele.model.dto.ele.EvaluationComment.foods: array expected");
+                                    throw TypeError('.com.ele.model.dto.ele.EvaluationComment.foods: array expected');
                                 message.foods = [];
                                 for (var i = 0; i < object.foods.length; ++i)
                                     message.foods[i] = String(object.foods[i]);
@@ -2472,29 +2472,29 @@ $root.com = (function() {
                             if (options.arrays || options.defaults)
                                 object.foods = [];
                             if (options.defaults) {
-                                object.profileImg = "";
-                                object.name = "";
-                                object.time = "";
-                                object.content = "";
-                                object.costTime = "";
+                                object.profileImg = '';
+                                object.name = '';
+                                object.time = '';
+                                object.content = '';
+                                object.costTime = '';
                                 object.star = 0;
                             }
-                            if (message.profileImg != null && message.hasOwnProperty("profileImg"))
+                            if (message.profileImg != null && message.hasOwnProperty('profileImg'))
                                 object.profileImg = message.profileImg;
-                            if (message.name != null && message.hasOwnProperty("name"))
+                            if (message.name != null && message.hasOwnProperty('name'))
                                 object.name = message.name;
-                            if (message.time != null && message.hasOwnProperty("time"))
+                            if (message.time != null && message.hasOwnProperty('time'))
                                 object.time = message.time;
                             if (message.foods && message.foods.length) {
                                 object.foods = [];
                                 for (var j = 0; j < message.foods.length; ++j)
                                     object.foods[j] = message.foods[j];
                             }
-                            if (message.content != null && message.hasOwnProperty("content"))
+                            if (message.content != null && message.hasOwnProperty('content'))
                                 object.content = message.content;
-                            if (message.costTime != null && message.hasOwnProperty("costTime"))
+                            if (message.costTime != null && message.hasOwnProperty('costTime'))
                                 object.costTime = message.costTime;
-                            if (message.star != null && message.hasOwnProperty("star"))
+                            if (message.star != null && message.hasOwnProperty('star'))
                                 object.star = options.json && !isFinite(message.star) ? String(message.star) : message.star;
                             return object;
                         };
@@ -2625,15 +2625,15 @@ $root.com = (function() {
                         ShopEvaluation.encode = function encode(message, writer) {
                             if (!writer)
                                 writer = $Writer.create();
-                            if (message.score != null && message.hasOwnProperty("score"))
+                            if (message.score != null && message.hasOwnProperty('score'))
                                 writer.uint32(/* id 1, wireType 1 =*/9).double(message.score);
-                            if (message.ratio != null && message.hasOwnProperty("ratio"))
+                            if (message.ratio != null && message.hasOwnProperty('ratio'))
                                 writer.uint32(/* id 2, wireType 1 =*/17).double(message.ratio);
-                            if (message.service != null && message.hasOwnProperty("service"))
+                            if (message.service != null && message.hasOwnProperty('service'))
                                 writer.uint32(/* id 3, wireType 1 =*/25).double(message.service);
-                            if (message.dish != null && message.hasOwnProperty("dish"))
+                            if (message.dish != null && message.hasOwnProperty('dish'))
                                 writer.uint32(/* id 4, wireType 1 =*/33).double(message.dish);
-                            if (message.time != null && message.hasOwnProperty("time"))
+                            if (message.time != null && message.hasOwnProperty('time'))
                                 writer.uint32(/* id 5, wireType 1 =*/41).double(message.time);
                             if (message.stamps != null && message.stamps.length)
                                 for (var i = 0; i < message.stamps.length; ++i)
@@ -2733,39 +2733,39 @@ $root.com = (function() {
                          * @returns {string|null} `null` if valid, otherwise the reason why it is not
                          */
                         ShopEvaluation.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.score != null && message.hasOwnProperty("score"))
-                                if (typeof message.score !== "number")
-                                    return "score: number expected";
-                            if (message.ratio != null && message.hasOwnProperty("ratio"))
-                                if (typeof message.ratio !== "number")
-                                    return "ratio: number expected";
-                            if (message.service != null && message.hasOwnProperty("service"))
-                                if (typeof message.service !== "number")
-                                    return "service: number expected";
-                            if (message.dish != null && message.hasOwnProperty("dish"))
-                                if (typeof message.dish !== "number")
-                                    return "dish: number expected";
-                            if (message.time != null && message.hasOwnProperty("time"))
-                                if (typeof message.time !== "number")
-                                    return "time: number expected";
-                            if (message.stamps != null && message.hasOwnProperty("stamps")) {
+                            if (typeof message !== 'object' || message === null)
+                                return 'object expected';
+                            if (message.score != null && message.hasOwnProperty('score'))
+                                if (typeof message.score !== 'number')
+                                    return 'score: number expected';
+                            if (message.ratio != null && message.hasOwnProperty('ratio'))
+                                if (typeof message.ratio !== 'number')
+                                    return 'ratio: number expected';
+                            if (message.service != null && message.hasOwnProperty('service'))
+                                if (typeof message.service !== 'number')
+                                    return 'service: number expected';
+                            if (message.dish != null && message.hasOwnProperty('dish'))
+                                if (typeof message.dish !== 'number')
+                                    return 'dish: number expected';
+                            if (message.time != null && message.hasOwnProperty('time'))
+                                if (typeof message.time !== 'number')
+                                    return 'time: number expected';
+                            if (message.stamps != null && message.hasOwnProperty('stamps')) {
                                 if (!Array.isArray(message.stamps))
-                                    return "stamps: array expected";
+                                    return 'stamps: array expected';
                                 for (var i = 0; i < message.stamps.length; ++i) {
                                     var error = $root.com.ele.model.dto.ele.EvaluationStamp.verify(message.stamps[i]);
                                     if (error)
-                                        return "stamps." + error;
+                                        return 'stamps.' + error;
                                 }
                             }
-                            if (message.comments != null && message.hasOwnProperty("comments")) {
+                            if (message.comments != null && message.hasOwnProperty('comments')) {
                                 if (!Array.isArray(message.comments))
-                                    return "comments: array expected";
+                                    return 'comments: array expected';
                                 for (var i = 0; i < message.comments.length; ++i) {
                                     var error = $root.com.ele.model.dto.ele.EvaluationComment.verify(message.comments[i]);
                                     if (error)
-                                        return "comments." + error;
+                                        return 'comments.' + error;
                                 }
                             }
                             return null;
@@ -2795,21 +2795,21 @@ $root.com = (function() {
                                 message.time = Number(object.time);
                             if (object.stamps) {
                                 if (!Array.isArray(object.stamps))
-                                    throw TypeError(".com.ele.model.dto.ele.ShopEvaluation.stamps: array expected");
+                                    throw TypeError('.com.ele.model.dto.ele.ShopEvaluation.stamps: array expected');
                                 message.stamps = [];
                                 for (var i = 0; i < object.stamps.length; ++i) {
-                                    if (typeof object.stamps[i] !== "object")
-                                        throw TypeError(".com.ele.model.dto.ele.ShopEvaluation.stamps: object expected");
+                                    if (typeof object.stamps[i] !== 'object')
+                                        throw TypeError('.com.ele.model.dto.ele.ShopEvaluation.stamps: object expected');
                                     message.stamps[i] = $root.com.ele.model.dto.ele.EvaluationStamp.fromObject(object.stamps[i]);
                                 }
                             }
                             if (object.comments) {
                                 if (!Array.isArray(object.comments))
-                                    throw TypeError(".com.ele.model.dto.ele.ShopEvaluation.comments: array expected");
+                                    throw TypeError('.com.ele.model.dto.ele.ShopEvaluation.comments: array expected');
                                 message.comments = [];
                                 for (var i = 0; i < object.comments.length; ++i) {
-                                    if (typeof object.comments[i] !== "object")
-                                        throw TypeError(".com.ele.model.dto.ele.ShopEvaluation.comments: object expected");
+                                    if (typeof object.comments[i] !== 'object')
+                                        throw TypeError('.com.ele.model.dto.ele.ShopEvaluation.comments: object expected');
                                     message.comments[i] = $root.com.ele.model.dto.ele.EvaluationComment.fromObject(object.comments[i]);
                                 }
                             }
@@ -2840,15 +2840,15 @@ $root.com = (function() {
                                 object.dish = 0;
                                 object.time = 0;
                             }
-                            if (message.score != null && message.hasOwnProperty("score"))
+                            if (message.score != null && message.hasOwnProperty('score'))
                                 object.score = options.json && !isFinite(message.score) ? String(message.score) : message.score;
-                            if (message.ratio != null && message.hasOwnProperty("ratio"))
+                            if (message.ratio != null && message.hasOwnProperty('ratio'))
                                 object.ratio = options.json && !isFinite(message.ratio) ? String(message.ratio) : message.ratio;
-                            if (message.service != null && message.hasOwnProperty("service"))
+                            if (message.service != null && message.hasOwnProperty('service'))
                                 object.service = options.json && !isFinite(message.service) ? String(message.service) : message.service;
-                            if (message.dish != null && message.hasOwnProperty("dish"))
+                            if (message.dish != null && message.hasOwnProperty('dish'))
                                 object.dish = options.json && !isFinite(message.dish) ? String(message.dish) : message.dish;
-                            if (message.time != null && message.hasOwnProperty("time"))
+                            if (message.time != null && message.hasOwnProperty('time'))
                                 object.time = options.json && !isFinite(message.time) ? String(message.time) : message.time;
                             if (message.stamps && message.stamps.length) {
                                 object.stamps = [];

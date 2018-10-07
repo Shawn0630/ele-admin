@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import { config } from '../../config';
 import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Switch, TimePicker, InputNumber, Upload, Table, message} from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { com } from "../../models/ele";
+import { com } from '../../models/ele';
+import { connect } from 'dva'
 const ShopDetail = com.ele.model.dto.ele.ShopDetail;
 const Promotion = com.ele.model.dto.ele.Promotion;
 const FormItem = Form.Item;
@@ -68,9 +70,16 @@ const columns = [{
 }];
 
 class AddShopForm extends Component {
+
+    constructor() {
+        super();
+        this.onSuccess = this.onSuccess.bind(this);
+    }
+
     state = {
         confirmDirty: false,
-        loading: false
+        loading: false,
+        imageUrl: null
     };
     getBase64(img, callback) {
         const reader = new FileReader();
@@ -86,6 +95,7 @@ class AddShopForm extends Component {
         });
     };
     handleChange = (info) => {
+        console.log("handleChange");
         if (info.file.status === 'uploading') {
             this.setState({ loading: true });
             return;
@@ -127,6 +137,19 @@ class AddShopForm extends Component {
             message.error('Image must smaller than 2MB!');
         }
         return isJPG && isLt2M;
+    }
+    onStart(file) {
+        console.log("onStart", file, file.name);
+    }
+    onSuccess(ret) {
+        console.log(`${config.apiRoot}/img/${ret}`);
+        this.setState({
+            imageUrl: `${config.apiRoot}/img/${ret}`
+        })
+        console.log("onSuccess", ret);
+    }
+    onError(err) {
+        console.log("onError", err);
     }
     renderUploadButton() {
         return<div>
@@ -171,7 +194,6 @@ class AddShopForm extends Component {
         const shop = new ShopDetail.create();
         shop.shopName = "test";
         shop.starNum = 4;
-        console.log(shop);
 
         return <Row gutter={16}>
         <Col className="gutter-row" md={24}>
@@ -269,11 +291,11 @@ class AddShopForm extends Component {
                         <FormItem {...formItemLayout} label="OPENING TIME ">
                                 <Col span={12}>
                                 <span> From </span>
-                                <TimePicker defaultValue={moment('6:00', format)} format={format} span={12} />
+                                <TimePicker id={"open_time_picker"} defaultValue={moment('6:00', format)} format={format} span={12} />
                                 </Col>
                                 <Col span={12}>
                                 <span> End </span>
-                                <TimePicker defaultValue={moment('22:00', format)} format={format} span={12} />
+                                <TimePicker id={"close_time_picker"} defaultValue={moment('22:00', format)} format={format} span={12} />
                                 </Col>
                         </FormItem>
                         <FormItem {...formItemLayout} label="PROFILE PICT. ">
@@ -282,11 +304,15 @@ class AddShopForm extends Component {
                                     listType="picture-card"
                                     className="avatar-uploader"
                                     showUploadList={false}
-                                    action="//jsonplaceholder.typicode.com/posts/"
+                                    customRequest={this.customRequest}
+                                    action={`${config.apiRoot}/img`}
+                                    headers={{'X-Requested-With':null}}
+                                    onStart={this.onStart}
+                                    onSuccess={this.onSuccess}
+                                    onError={this.onError}
                                     beforeUpload={this.beforeUpload}
-                                    onChange={this.handleChange}
                                 >
-                                    {imageUrl ? <img src={imageUrl} alt="avatar" /> : this.renderUploadButton()}
+                                    {this.state.imageUrl ? <img src={imageUrl} alt="avatar" /> : this.renderUploadButton()}
                                 </Upload>
                         </FormItem>
                         <FormItem {...formItemLayout} label="PROMOTION ">
@@ -317,4 +343,7 @@ class AddShopForm extends Component {
 
 const AddShop = Form.create()(AddShopForm);
 
-export default AddShop;
+export default connect(({ global, result }) => ({
+    global: global,
+    result: result
+}))(AddShop);

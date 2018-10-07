@@ -8,5 +8,13 @@
                 "./src/*"
             ]
         }
+    },
+    "typeAcquisition": {
+        "include": [
+            "react",
+            "redux",
+            "react-redux",
+            "superagent"
+        ]
     }
 }

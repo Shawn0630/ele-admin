@@ -10,7 +10,8 @@ export default {
 
     state: {
         auth: {},
-        responsive: {}
+        responsive: {},
+        error: []
     },
 
     effects: { 
@@ -19,7 +20,7 @@ export default {
                 type: 'putData',
                 payload,
             });
-        },
+        }
     },
 
     reducers: {
@@ -27,6 +28,18 @@ export default {
             const copy = {...state};
             copy[payload.category] = handleData(state[payload.category], payload.data)
             return copy;
+        },
+        addError(state, action) {
+            return {
+                ...state,
+                error: [action.payload].concat(state.action)
+            };
+        },
+        removeError(state, action) {
+            return {
+                ...state,
+                error: state.error.filter(e => e.message !== action.payload.message)
+            };
         }
     }
 }

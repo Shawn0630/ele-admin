@@ -23,7 +23,6 @@ export default class CRouter extends Component {
         return permission ? this.requireAuth(permission, component) : component;
     };
     render() {
-        debugger;
         return (
             <Switch>
                 {

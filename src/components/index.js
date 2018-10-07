@@ -28,7 +28,7 @@ import Cssmodule from './cssmodule';
 import MapUi from './ui/map';
 import AddShop from './dataEntries/AddShop';
 
-const WysiwygBundle = Loadable({    // 按需加载富文本配置
+const WysiwygBundle = Loadable({ // 按需加载富文本配置
     loader: () => import('./ui/Wysiwyg'),
     loading: Loading,
 });
