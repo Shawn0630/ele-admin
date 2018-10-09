@@ -1,12 +1,27 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import { config } from '../../config';
-import { Card, Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Switch, TimePicker, InputNumber, Upload, Table, message} from 'antd';
+import { Card,
+         Form,
+         Input,
+         Tooltip,
+         Icon,
+         Cascader,
+         Select,
+         Row,
+         Col,
+         Button,
+         Switch,
+         TimePicker,
+         InputNumber,
+         Upload,
+         Table,
+         message} from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
+import PromotionModal from './PromotionModal';
 import { com } from '../../models/ele';
 import { connect } from 'dva'
 const ShopDetail = com.ele.model.dto.ele.ShopDetail;
-const Promotion = com.ele.model.dto.ele.Promotion;
 const FormItem = Form.Item;
 const Option = Select.Option;
 
@@ -40,52 +55,28 @@ const residences = [{
     }],
 }];
 
-const columns = [{
-    title: 'TITLE',
-    dataIndex: 'title',
-    key: 'title',
-    render: text => <a>{text}</a>,
-}, {
-    title: 'NAME',
-    dataIndex: 'name',
-    key: 'name',
-}, {
-    title: 'DETAIL',
-    dataIndex: 'detial',
-    key: 'detial',
-}, {
-    title: 'ACTIONS',
-    key: 'action',
-    render: (text, record) => (
-        <span>
-            <a>Action 一 {record.name}</a>
-            <span className="ant-divider" />
-            <a>Delete</a>
-            <span className="ant-divider" />
-            <a className="ant-dropdown-link">
-                More actions <Icon type="down" />
-            </a>
-        </span>
-    ),
-}];
-
 class AddShopForm extends Component {
 
     constructor() {
         super();
         this.onSuccess = this.onSuccess.bind(this);
+        this.addPromotion = this.addPromotion.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     state = {
         confirmDirty: false,
         loading: false,
-        imageUrl: null
+        imageUrl: null,
+        promotions: [],
+        openModal: false
     };
-    getBase64(img, callback) {
-        const reader = new FileReader();
-        reader.addEventListener('load', () => callback(reader.result));
-        reader.readAsDataURL(img);
+
+    componentDidMount() {
+        this.setInitialValues();
     }
+
+    // button functions
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
@@ -94,20 +85,6 @@ class AddShopForm extends Component {
             }
         });
     };
-    handleChange = (info) => {
-        console.log("handleChange");
-        if (info.file.status === 'uploading') {
-            this.setState({ loading: true });
-            return;
-        }
-        if (info.file.status === 'done') {
-            // Get this url from response in real world.
-            this.getBase64(info.file.originFileObj, imageUrl => this.setState({
-                imageUrl,
-                loading: false,
-            }));
-        }
-    }
     handleConfirmBlur = (e) => {
         const value = e.target.value;
         this.setState({ confirmDirty: this.state.confirmDirty || !!value });
@@ -127,6 +104,35 @@ class AddShopForm extends Component {
         }
         callback();
     };
+    openDialog = (e) => {
+        this.setState({
+            openModal: true
+        })
+    }
+    handleCancel = (e) => {
+        this.setState({
+            openModal: false
+        })
+    }
+    addPromotion = (type, detail) => {
+        this.setState({
+            promotions: [...this.state.promotions, {
+                key: this.state.promotions.length + 1,
+                title: type,
+                detail: detail
+            }],
+            openModal: false
+        });
+    }
+    handleDelete = (index) => {
+        const promotions = [...this.state.promotions]; 
+        promotions.splice(index, 1);
+        this.setState({
+            promotions: promotions
+        });
+    }
+
+    // upload function releated
     beforeUpload(file) {
         const isJPG = file.type === 'image/jpeg';
         if (!isJPG) {
@@ -139,27 +145,37 @@ class AddShopForm extends Component {
         return isJPG && isLt2M;
     }
     onStart(file) {
-        console.log("onStart", file, file.name);
     }
     onSuccess(ret) {
-        console.log(`${config.apiRoot}/img/${ret}`);
         this.setState({
             imageUrl: `${config.apiRoot}/img/${ret}`
         })
-        console.log("onSuccess", ret);
     }
     onError(err) {
-        console.log("onError", err);
     }
     renderUploadButton() {
-        return<div>
+        return <div>
                 <Icon type={this.state.loading ? 'loading' : 'plus'} />
                 <div className="ant-upload-text">Upload</div>
         </div>;
     }
+
+    setInitialValues = () => {
+        const { form } = this.props;
+        form.setFieldsValue({
+            garantee: true,
+            ensurance: true,
+            new: true,
+            exclusive: true,
+            available: true,
+            ontime: true,
+            deliveryFee: 5,
+        })
+    }
+
+    // shop Registration Form
     renderShopRegistrationForm() {
         const { getFieldDecorator } = this.props.form;
-        const data = [];
         const formItemLayout = {
             labelCol: {
                 xs: { span: 26 },
@@ -191,9 +207,31 @@ class AddShopForm extends Component {
         );
         const format = 'HH:mm';
         const imageUrl = this.state.imageUrl;
+        const promotions = this.state.promotions;
+        console.log(promotions);
         const shop = new ShopDetail.create();
-        shop.shopName = "test";
-        shop.starNum = 4;
+
+        const columns = [{
+            title: 'TITLE',
+            dataIndex: 'title',
+            key: 'title',
+            render: text => <a>{text}</a>,
+        }, {
+            title: 'NAME',
+            dataIndex: 'name',
+            key: 'name',
+        }, {
+            title: 'DETAIL',
+            dataIndex: 'detail',
+            key: 'detail',
+            render: text => <a>{text}</a>,
+        }, {
+            title: 'ACTIONS',
+            key: 'action',
+            render: (text, record, index) => (
+                <Button type="primary" shape="circle" icon="close" onClick={this.handleDelete} />
+            ),
+        }];
 
         return <Row gutter={16}>
         <Col className="gutter-row" md={24}>
@@ -214,20 +252,16 @@ class AddShopForm extends Component {
                             getFieldDecorator('address', {
                                 rules: [{
                                     required: true, message: 'Please enter your shop address!',
-                                }, {
-                                    validator: this.checkConfirm,
                                 }],
                             })(<Input />)}
                         </FormItem>
                         <FormItem {...formItemLayout} label="CONTACT" hasFeedback>
                         {
-                            getFieldDecorator('confirm', {
+                            getFieldDecorator('contact', {
                                 rules: [{
-                                    required: true, message: '请确认你的密码!',
-                                }, {
-                                    validator: this.checkPassword,
+                                    required: true, message: 'Please enter your contact information!',
                                 }],
-                            })(<Input type="password" onBlur={this.handleConfirmBlur} />)
+                            })(<Input />)
                         }
                         </FormItem>
                         <FormItem {...formItemLayout} label={(
@@ -239,17 +273,17 @@ class AddShopForm extends Component {
                         )} hasFeedback
                         >
                         {
-                            getFieldDecorator('nickname', {
-                                rules: [{ required: true, message: '请输入昵称!', whitespace: true }],
+                            getFieldDecorator('description', {
+                                rules: [{ required: true, message: 'Please enter your shop desscription!', whitespace: true }],
                             })(<Input />)}
                         </FormItem>
                         <FormItem {...formItemLayout} label="Category">
                             {
-                                getFieldDecorator('residence', {
+                                getFieldDecorator('category', {
                                     initialValue: ['Canada', 'Ontario', 'Waterloo'],
                                     rules: [{ 
                                         type: 'array', required: true, 
-                                        message: '请选择你的常住地址!' 
+                                        message: 'Please enter your shop category' 
                                     }],
                                 })(<Cascader options={residences} />)}
                         </FormItem>
@@ -257,45 +291,83 @@ class AddShopForm extends Component {
                         {[
                             <Row gutter={8}>
                                 <Col span={8}>
-                                    <span>BR. GUARANTEE</span>
-                                    <Switch defaultChecked size="small" onChange={this.handleDisabledChange} />
+                                <span>BR. GUARANTEE</span>
+                                {
+                                    getFieldDecorator('garantee', {
+                                        valuePropName: 'checked'
+                                    })(<Switch size="small" />)
+                                }
                                 </Col>
                                 <Col span={8}>
                                     <span>QUA. ENSURANCE</span>
-                                    <Switch defaultChecked size="small" onChange={this.handleDisabledChange} />
+                                    {
+                                        getFieldDecorator('ensurance', {
+                                            valuePropName: 'checked'
+                                        })(<Switch size="small" />)
+                                    }
                                 </Col>
                                 <Col span={8}>
                                     <span>BR. NEW</span>
-                                    <Switch defaultChecked size="small" onChange={this.handleDisabledChange} />
+                                    {
+                                        getFieldDecorator('new', {
+                                            valuePropName: 'checked'
+                                        })(<Switch size="small" />)
+                                    }
                                 </Col>
                             </Row>,
                             <Row gutter={8}>
                                 <Col span={8}>
                                     <span>DELI. EXCLUSIVE</span>
-                                    <Switch defaultChecked size="small" onChange={this.handleDisabledChange} />
+                                    {
+                                        getFieldDecorator('exclusive', {
+                                            valuePropName: 'checked'
+                                        })(<Switch size="small" />)
+                                    }
                                 </Col>
                                 <Col span={8}>
                                     <span>RECPT. AVAILABLE</span>
-                                    <Switch defaultChecked size="small" onChange={this.handleDisabledChange} />
+                                    {
+                                        getFieldDecorator('available', {
+                                            valuePropName: 'checked'
+                                        })(<Switch size="small" />)
+                                    }
                                 </Col>
                                 <Col span={8}>
                                     <span>ON TIME</span>
-                                    <Switch defaultChecked size="small" onChange={this.handleDisabledChange} />
+                                    {
+                                        getFieldDecorator('ontime', {
+                                            valuePropName: 'checked'
+                                        })(<Switch size="small" />)
+                                    }
                                 </Col>
                             </Row>
                         ]}
                         </FormItem>
                         <FormItem {...formItemLayout} label="DELIVERY FEE">
-                            <InputNumber min={0} max={100} defaultValue={5} />
+                            {
+                                getFieldDecorator('deliveryFee', {
+                                })(<InputNumber min={0} max={100} />)
+                            }
+                           
                         </FormItem>
                         <FormItem {...formItemLayout} label="OPENING TIME ">
                                 <Col span={12}>
                                 <span> From </span>
-                                <TimePicker id={"open_time_picker"} defaultValue={moment('6:00', format)} format={format} span={12} />
+                                {
+                                    getFieldDecorator('openTime', {
+                                        initialValue: moment('6:00', format)
+                                    })(
+                                    <TimePicker id={"open_time_picker"} format={format} span={12} />)
+                                }
                                 </Col>
                                 <Col span={12}>
                                 <span> End </span>
-                                <TimePicker id={"close_time_picker"} defaultValue={moment('22:00', format)} format={format} span={12} />
+                                {
+                                    getFieldDecorator('closeTime', {
+                                        initialValue: moment('22:00', format)
+                                    })(
+                                    <TimePicker id={"close_time_picker"} format={format} span={12} />)
+                                }
                                 </Col>
                         </FormItem>
                         <FormItem {...formItemLayout} label="PROFILE PICT. ">
@@ -312,17 +384,12 @@ class AddShopForm extends Component {
                                     onError={this.onError}
                                     beforeUpload={this.beforeUpload}
                                 >
-                                    {this.state.imageUrl ? <img src={imageUrl} alt="avatar" /> : this.renderUploadButton()}
+                                    {this.state.imageUrl ? <img src={imageUrl} alt="avatar" className="img-preview" /> : this.renderUploadButton()}
                                 </Upload>
                         </FormItem>
                         <FormItem {...formItemLayout} label="PROMOTION ">
-                            <Select defaultValue="NEW" style={{ width: 150 }}>
-                                <Option value={Promotion.NEW}>NEW USER</Option>
-                                <Option value={Promotion.SPECIAL}>SPCIAL OFFER</Option>
-                                <Option value={Promotion.DISCOUNT}>DISCOUNT</Option>
-                                <Option value={Promotion.SUBTRACTION}>DEDUCT</Option>
-                            </Select>
-                            <Table columns={columns} dataSource={data} />
+                            <Button shape="circle" icon="plus" onClick={this.openDialog} />
+                            <Table columns={columns} dataSource={this.state.promotions} />
                         </FormItem>
                         <FormItem {...tailFormItemLayout}>
                             <Button type="primary" htmlType="submit" size="large">CREATE SHOP</Button>
@@ -333,9 +400,12 @@ class AddShopForm extends Component {
         </Col>
     </Row>
     }
+
+    // render function
     render() {
         return <div className="gutter-example">
             <BreadcrumbCustom first="Add Data" second="Add Shop" />
+            {this.state.openModal ? <PromotionModal open={this.state.openModal} handleCancel={this.handleCancel} handleSubmit={this.addPromotion} /> : null}
             {this.renderShopRegistrationForm()}
         </div>;
     }
