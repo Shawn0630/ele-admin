@@ -124,12 +124,14 @@ class AddShopForm extends Component {
             openModal: false
         });
     }
-    handleDelete = (index) => {
-        const promotions = [...this.state.promotions]; 
-        promotions.splice(index, 1);
-        this.setState({
-            promotions: promotions
-        });
+    handleDelete(index) {
+        return () => {
+            const promotions = [...this.state.promotions]; 
+            promotions.splice(index, 1);
+            this.setState({
+                promotions: promotions
+            });
+        }
     }
 
     // upload function releated
@@ -229,7 +231,7 @@ class AddShopForm extends Component {
             title: 'ACTIONS',
             key: 'action',
             render: (text, record, index) => (
-                <Button type="primary" shape="circle" icon="close" onClick={this.handleDelete} />
+                <Button type="primary" shape="circle" icon="close" onClick={this.handleDelete(this, index)} />
             ),
         }];
 
